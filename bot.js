@@ -1,6 +1,6 @@
 // Create the configuration
 var config = {
-	channels: ["#fsmk"],
+	channels: ["#forgabbie"],
 	server: "irc.freenode.net",
 	botName: "Gabbie"
 };
@@ -13,14 +13,23 @@ var bot = new irc.Client(config.server,config.botName,{
 // Listen for joins
 // bot.addListener("join", function(channel, who) {
 // 	// Welcome them in!
-// 	bot.say(channel, who + "...dude...welcome back!");
+// 	if(who != 'Gabbie')
+// 	bot.say(channel, "Welcome " + who + ". I'm Gabbie.");
 // });
 // Listen for any message, PM said user when he posts
-bot.addListener("message", function(from, to, text, message) {
+bot.addListener("pm", function(from, to, text, message) {
 	bot.say(from, "Hi! I'm Gabbie. I'm Manas's friend. He'll tell you more about me");
 });
 
 // Listen for any message, say to him/her in the room
-bot.addListener("message", function(from, to, text, message) {
-	bot.say(config.channels[0],"Hello! I'm not confortable here");
+bot.addListener("message", function (from, to, text) {
+	if (text.toLowerCase().indexOf('hi') != -1) {
+		bot.say(config.channels[0],"Hello " + from + "! How are you?");
+	};
 });
+
+bot.addListener('message', function (from, to, message) {
+    console.log(from + ' => ' + to + ': ' + message);
+});
+
+console.log('Gabbie has woken up');
