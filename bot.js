@@ -16,7 +16,7 @@ bot.addListener("join", function(channel, who) {
 	if(who != 'Gabbie')
 	bot.say(channel, "Welcome " + who + ". I'm Gabbie.");
 });
-Listen for any message, PM said user when he posts
+//Listen for any message, PM said user when he posts
 bot.addListener("pm", function(from, to, text, message) {
 	bot.say(from, "Hi! I'm Gabbie. I'm Manas's friend. He'll tell you more about me");
 });
